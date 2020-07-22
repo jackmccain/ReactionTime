@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Bitter&display=swap);
+
+        .navbar {
+            background-color: black;
+            font-family: 'Bitter', sans-serif;
+            padding: 0.8rem;
+            margin-top: 0rem;
+            color: white;
+            font-size: 27px;
+            text-align: center;
+        }
+
+        .font {
+            font-family: 'Bitter', sans-serif;
+            text-align: center;
+            font-size: larger;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 50rem;
+        }
+
+        .Button {
+            border: groove;
+            margin-top: -20rem;
+            padding: 300px 400px;
+            font-family: 'Bitter', sans-serif;
+            cursor: pointer;
+            color: white;
+            margin: auto;
+            border-radius: 5rem, 3rem;
+            margin-top: 3rem;
+
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        body {
+            margin: 0;
+            background-position-y: 0rem;
+            background-image: url(https://images.wallpapersden.com/image/download/cloudy-mountains_66340_3840x2160.jpg);
+            background-position-y: -30rem;
+        }
+    </style>
+    <title>Get Your Reaction Time</title>
+</head>
+
+<body>
+    <nav>
+        <div class="navbar"><strong>When the <span style="color:rgb(72, 121, 255)">blue</span> button becomes <span
+                    style="color:red">red</span>, CLICK!</strong></div>
+    </nav>
+
+    <div class="font">
+        <button class="Button blue" id="btn" onclick='buttonClick()'></button>
+    </div>
+
+    <script>
+        var d = null;
+        var x = null;
+        function start() {
+            d = null;
+            x = Math.floor((Math.random() * 10000) + 1000);
+            document.getElementById("btn").classList.remove("red");
+            document.getElementById("btn").classList.add("blue");
+            setTimeout(makeRed, x);
+        }
+
+        function buttonClick() {
+            if (d === null) {
+                alert("Failed: You clicked too early!");
+            } else {
+                var c = (new Date().getTime() - d) / 1000;
+                alert("Your reaction time was: " + c + " seconds");
+            }
+            start();
+        }
+        function makeRed() {
+            document.getElementById("btn").classList.remove("blue");
+            document.getElementById("btn").classList.add("red");
+            d = new Date().getTime();
+        }
+        start();
+    </script>
+</body>
+
+</html>
